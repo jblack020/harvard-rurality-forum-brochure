@@ -13,6 +13,24 @@ Key references:
 
 Always consult `style.md` for full details on colors, typography, font-face setup, and usage guidelines.
 
+## Dev Server Setup
+
+`.claude/launch.json` is **gitignored** — each worktree needs its own. When starting work in a worktree that doesn't have one, create it with a **unique port** (pick a random port between 8100–8999 that isn't already in use):
+
+```json
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "brochure",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "<PORT>"],
+      "port": <PORT>
+    }
+  ]
+}
+```
+
 ## Design Options Pattern
 
 When presenting multiple design options to the user, use the **Design Options** system built into the project. This lets the user browse options visually with arrow keys or a floating picker, rather than having to imagine differences from descriptions.
