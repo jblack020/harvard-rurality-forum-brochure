@@ -328,15 +328,23 @@
         height: 2px;
         background: var(--primary);
       }
-      .panel-header .time {
-        margin-bottom: 0.02in;
-      }
       .panel-header h2 {
         font-family: "Libre Baskerville", Georgia, serif;
         font-size: 11pt;
         font-weight: 700;
         color: var(--text);
         line-height: 1.2;
+      }
+      .panel-header .time {
+        font-family: "Libre Baskerville", Georgia, serif;
+        font-size: 6.5pt;
+        font-weight: 400;
+        text-transform: none;
+        letter-spacing: 0;
+        color: var(--primary);
+        opacity: 0.8;
+        font-style: italic;
+        margin-bottom: 0.02in;
       }
       .panel-header .cosponsor {
         display: flex;
@@ -359,43 +367,32 @@
         margin-bottom: 0.12in;
       }
 
-      /* ── Panel Title Style: Serif title, short accent underline, sans time ── */
-
-      /* ── Time Typography: Serif italic ── */
-      .panel-header .time {
-        font-family: "Libre Baskerville", Georgia, serif;
-        font-size: 6.5pt;
-        font-weight: 400;
-        text-transform: none;
-        letter-spacing: 0;
-        color: var(--primary);
-        opacity: 0.8;
-        font-style: italic;
-      }
-
-      /* Speaker cards */
+      /* Speaker cards (base) */
       .speaker-card {
         display: flex;
-        gap: 0.14in;
+        gap: 0;
         margin-bottom: 0.1in;
         background: var(--white);
         border-radius: 6px;
-        padding: 0.12in;
-        border: 1px solid rgba(127, 55, 8, 0.08);
+        padding: 0;
         align-items: center;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
       }
       .speaker-card img {
-        width: 0.7in;
-        height: 0.7in;
-        border-radius: 50%;
+        width: 0.85in;
+        min-height: 100%;
+        border-radius: 0;
         object-fit: cover;
         object-position: center 15%;
         flex-shrink: 0;
-        border: 2px solid rgba(127, 55, 8, 0.1);
+        align-self: stretch;
+        filter: grayscale(1) contrast(1.15) brightness(1.05);
       }
       .speaker-card .info {
         flex: 1;
         min-width: 0;
+        padding: 0.1in 0.12in;
       }
       .speaker-card .info h4 {
         font-size: 8pt;
@@ -415,6 +412,11 @@
         font-size: 6pt;
         color: #666;
         line-height: 1.5;
+      }
+
+      /* Keynote headshot filter */
+      .keynote-section img {
+        filter: grayscale(1) contrast(1.15) brightness(1.05);
       }
 
       /* ── Schedule / Keynote (inner left panel) ── */
@@ -508,35 +510,376 @@
         font-weight: 600;
       }
 
-      /* ── Speaker Card: Inset wide portrait ── */
-      .speaker-card {
-        border: none !important;
-        border-radius: 6px;
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      /* ═══════════════════════════════════════
+         PANEL DESIGN OPTIONS (Side B styles)
+         Uses data-panel-style attribute on .side-b
+         ═══════════════════════════════════════ */
+
+      /* Hidden trigger container */
+      .panel-style-triggers { display: none; }
+
+      /* ── A: Clean Accent ── */
+      .side-b[data-panel-style="A"] .inner-panel {
+        background: #ffffff;
+      }
+      .side-b[data-panel-style="A"] .panel-header {
+        border-left: 3px solid var(--primary);
+        padding-left: 0.12in;
+      }
+      .side-b[data-panel-style="A"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="A"] .panel-header h2 {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-size: 10.5pt;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .side-b[data-panel-style="A"] .speaker-card {
+        background: var(--bg);
+        box-shadow: none;
+        border: 1px solid rgba(127,55,8,0.06);
+      }
+      .side-b[data-panel-style="A"] .speaker-card img {
+        width: 0.7in;
+        min-height: 0;
+        height: 0.7in;
+        border-radius: 50%;
+        align-self: center;
+        margin: 0.08in 0 0.08in 0.1in;
+      }
+
+      /* ── B: Banner Headers ── */
+      .side-b[data-panel-style="B"] .inner-panel {
+        padding-top: 0;
+      }
+      .side-b[data-panel-style="B"] .panel-header {
+        background: var(--primary);
+        margin: 0 -0.25in 0.15in;
+        padding: 0.16in 0.25in 0.13in;
+      }
+      .side-b[data-panel-style="B"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="B"] .panel-header .time {
+        color: var(--accent-light);
+        opacity: 1;
+      }
+      .side-b[data-panel-style="B"] .panel-header h2 {
+        color: #fff;
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 700;
+      }
+      .side-b[data-panel-style="B"] .panel-header .cosponsor span {
+        color: rgba(255,255,255,0.6);
+      }
+      .side-b[data-panel-style="B"] .speaker-card {
+        border-radius: 4px;
+        border-left: 3px solid var(--primary);
+      }
+
+      /* ── C: Dark Elegance ── */
+      .side-b[data-panel-style="C"] .inner-panel {
+        background: #1c1917;
+      }
+      .side-b[data-panel-style="C"] .panel-header .time {
+        color: var(--accent-light);
+        opacity: 1;
+      }
+      .side-b[data-panel-style="C"] .panel-header h2 { color: #fff; }
+      .side-b[data-panel-style="C"] .panel-header::after { background: var(--accent-light); }
+      .side-b[data-panel-style="C"] .panel-desc { color: rgba(255,255,255,0.45); }
+      .side-b[data-panel-style="C"] .speaker-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: none;
+      }
+      .side-b[data-panel-style="C"] .speaker-card img {
+        filter: grayscale(1) contrast(1.2) brightness(0.9);
+      }
+      .side-b[data-panel-style="C"] .speaker-card .info h4 { color: #fff; }
+      .side-b[data-panel-style="C"] .speaker-card .info .title { color: var(--accent-light); }
+      .side-b[data-panel-style="C"] .speaker-card .info .bio { color: rgba(255,255,255,0.45); }
+      .side-b[data-panel-style="C"] .panel-header .cosponsor span { color: rgba(255,255,255,0.4); }
+
+      /* ── D: Serif Editorial ── */
+      .side-b[data-panel-style="D"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="D"] .panel-header {
+        border-bottom: 1px solid rgba(127,55,8,0.15);
+        padding-bottom: 0.1in;
+        margin-bottom: 0.12in;
+      }
+      .side-b[data-panel-style="D"] .panel-header h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 13pt;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+      }
+      .side-b[data-panel-style="D"] .panel-header .time {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 7pt;
+        font-style: italic;
+      }
+      .side-b[data-panel-style="D"] .panel-desc {
+        font-family: "EB Garamond", Georgia, serif;
+        font-size: 7pt;
+        line-height: 1.6;
+        color: #555;
+      }
+      .side-b[data-panel-style="D"] .speaker-card {
+        background: transparent;
+        box-shadow: none;
+        border-bottom: 1px solid rgba(127,55,8,0.08);
+        border-radius: 0;
+        padding-bottom: 0.1in;
+        margin-bottom: 0.08in;
+      }
+      .side-b[data-panel-style="D"] .speaker-card img {
+        width: 0.55in;
+        min-height: 0;
+        height: 0.55in;
+        border-radius: 50%;
+        align-self: flex-start;
+        margin: 0.05in 0 0.05in 0.05in;
+        border: 1.5px solid rgba(127,55,8,0.15);
+      }
+      .side-b[data-panel-style="D"] .speaker-card .info .bio {
+        font-family: "EB Garamond", Georgia, serif;
+        font-size: 6.5pt;
+      }
+
+      /* ── E: Numbered Index ── */
+      .side-b[data-panel-style="E"] .inner-panel {
+        position: relative;
+      }
+      .side-b[data-panel-style="E"] .inner-panel::before {
+        position: absolute;
+        top: 0.1in;
+        right: 0.15in;
+        font-family: "Open Sauce Sans", sans-serif;
+        font-size: 72pt;
+        font-weight: 900;
+        color: var(--primary);
+        opacity: 0.04;
+        line-height: 1;
+        pointer-events: none;
+      }
+      .side-b[data-panel-style="E"] .inner-panel:nth-child(1)::before { content: "01"; }
+      .side-b[data-panel-style="E"] .inner-panel:nth-child(2)::before { content: "02"; }
+      .side-b[data-panel-style="E"] .inner-panel:nth-child(3)::before { content: "03"; }
+      .side-b[data-panel-style="E"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="E"] .panel-header h2 {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-size: 10pt;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .side-b[data-panel-style="E"] .panel-header .time {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 6pt;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        opacity: 0.5;
+      }
+      .side-b[data-panel-style="E"] .speaker-card {
+        border-radius: 0;
+        box-shadow: none;
+        border-bottom: 2px solid rgba(127,55,8,0.06);
+        background: transparent;
+      }
+      .side-b[data-panel-style="E"] .speaker-card img {
+        width: 0.6in;
+        min-height: 0;
+        height: 0.6in;
+        border-radius: 4px;
+        align-self: flex-start;
+        margin: 0.06in 0 0.06in 0.06in;
+      }
+
+      /* ── F: Elevated Cards ── */
+      .side-b[data-panel-style="F"] .inner-panel {
+        background: #f0ebe4;
+      }
+      .side-b[data-panel-style="F"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="F"] .panel-header {
+        margin-bottom: 0.12in;
+      }
+      .side-b[data-panel-style="F"] .panel-header h2 {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 700;
+        font-size: 10.5pt;
+        color: var(--primary);
+      }
+      .side-b[data-panel-style="F"] .speaker-card {
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+        border-top: 3px solid var(--primary);
+        background: #fff;
+      }
+      .side-b[data-panel-style="F"] .speaker-card img {
+        width: 0.7in;
+        min-height: 0;
+        height: 0.7in;
+        border-radius: 50%;
+        align-self: center;
+        margin: 0.1in 0 0.1in 0.12in;
+      }
+
+      /* ── G: Two-Tone Split ── */
+      .side-b[data-panel-style="G"] .inner-panel {
         padding: 0;
-        overflow: hidden;
-        gap: 0;
+        display: flex;
+        flex-direction: column;
       }
-      .speaker-card img {
-        width: 0.85in !important;
-        height: unset !important;
-        min-height: 100%;
-        border-radius: 0 !important;
-        border: none !important;
-        object-fit: cover;
-        align-self: stretch;
+      .side-b[data-panel-style="G"] .panel-header {
+        background: var(--primary);
+        padding: 0.2in 0.25in 0.15in;
+        margin-bottom: 0;
       }
-      .speaker-card .info {
+      .side-b[data-panel-style="G"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="G"] .panel-header .time {
+        color: var(--accent-light);
+        opacity: 1;
+      }
+      .side-b[data-panel-style="G"] .panel-header h2 {
+        color: #fff;
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 800;
+        font-size: 11pt;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .side-b[data-panel-style="G"] .panel-header .cosponsor span { color: rgba(255,255,255,0.5); }
+      .side-b[data-panel-style="G"] .panel-desc {
+        padding: 0.12in 0.25in 0;
+        margin-bottom: 0.08in;
+      }
+      .side-b[data-panel-style="G"] .speaker-card {
+        margin: 0 0.2in 0.1in;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      }
+
+      /* ── H: Outlined Geometric ── */
+      .side-b[data-panel-style="H"] .inner-panel {
+        background: #fff;
+        border-right: 1px solid rgba(127,55,8,0.1);
+      }
+      .side-b[data-panel-style="H"] .inner-panel:last-child { border-right: none; }
+      .side-b[data-panel-style="H"] .panel-header {
+        border: 1px solid rgba(127,55,8,0.15);
+        border-radius: 0;
         padding: 0.1in 0.12in;
+        margin-bottom: 0.12in;
+      }
+      .side-b[data-panel-style="H"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="H"] .panel-header h2 {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 700;
+        font-size: 9.5pt;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .side-b[data-panel-style="H"] .panel-desc {
+        border-left: 2px solid var(--accent-light);
+        padding-left: 0.08in;
+      }
+      .side-b[data-panel-style="H"] .speaker-card {
+        background: transparent;
+        border: 1px solid rgba(127,55,8,0.12);
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .side-b[data-panel-style="H"] .speaker-card img {
+        width: 0.7in;
+        min-height: 0;
+        height: 0.75in;
+        align-self: stretch;
+        border-right: 1px solid rgba(127,55,8,0.08);
       }
 
-      /* ── Title Typography: Extra-bold all-caps sans ── */
-
-      /* ── Headshot Filter: High contrast B&W ── */
-      .speaker-card img,
-      .keynote-section img {
-        filter: grayscale(1) contrast(1.15) brightness(1.05);
+      /* ── I: Left Stripe ── */
+      .side-b[data-panel-style="I"] .inner-panel {
+        padding-left: 0.45in;
+        position: relative;
       }
+      .side-b[data-panel-style="I"] .inner-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 0.18in;
+        background: var(--primary);
+      }
+      .side-b[data-panel-style="I"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="I"] .panel-header h2 {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 800;
+        font-size: 10pt;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .side-b[data-panel-style="I"] .speaker-card {
+        border-radius: 4px;
+        margin-bottom: 0.08in;
+      }
+      .side-b[data-panel-style="I"] .speaker-card img {
+        width: 0.65in;
+        min-height: 0;
+        height: 0.65in;
+        border-radius: 50%;
+        align-self: center;
+        margin: 0.08in 0 0.08in 0.08in;
+      }
+
+      /* ── J: Compact Grid ── */
+      .side-b[data-panel-style="J"] .inner-panel {
+        background: #fff;
+        padding: 0.2in 0.2in;
+      }
+      .side-b[data-panel-style="J"] .panel-header {
+        background: var(--bg);
+        padding: 0.08in 0.12in;
+        border-radius: 4px;
+        margin-bottom: 0.1in;
+      }
+      .side-b[data-panel-style="J"] .panel-header::after { display: none; }
+      .side-b[data-panel-style="J"] .panel-header h2 {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-size: 8.5pt;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--primary);
+      }
+      .side-b[data-panel-style="J"] .panel-header .time {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 5.5pt;
+        letter-spacing: 0.5px;
+      }
+      .side-b[data-panel-style="J"] .panel-desc {
+        font-size: 6pt;
+        margin-bottom: 0.08in;
+      }
+      .side-b[data-panel-style="J"] .speaker-card {
+        border-radius: 6px;
+        margin-bottom: 0.06in;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        border: 1px solid rgba(127,55,8,0.05);
+      }
+      .side-b[data-panel-style="J"] .speaker-card img {
+        width: 0.6in;
+      }
+      .side-b[data-panel-style="J"] .speaker-card .info {
+        padding: 0.06in 0.08in;
+      }
+      .side-b[data-panel-style="J"] .speaker-card .info h4 { font-size: 7pt; }
+      .side-b[data-panel-style="J"] .speaker-card .info .title { font-size: 5.5pt; }
+      .side-b[data-panel-style="J"] .speaker-card .info .bio { font-size: 5.5pt; }
 
       /* ── Print styles ── */
       @media print {
@@ -677,6 +1020,9 @@
           display: block !important;
         }
         .options-picker {
+          display: none !important;
+        }
+        .panel-style-triggers {
           display: none !important;
         }
       }
@@ -863,8 +1209,6 @@
       >
         <h2 style="text-transform: uppercase; letter-spacing: 2px;">Schedule</h2>
 
-
-        <!-- Speaker cards (Option B locked in) -->
         <ul class="schedule-list">
           <li>
             <span class="time-col">9:30 AM</span>
@@ -878,7 +1222,6 @@
             <span class="time-col">10:45 AM</span>
             <span class="event-col"><strong>Opening Keynote</strong></span>
           </li>
-          <!-- Speaker card: David Deming (Opening Keynote) -->
           <li style="border-bottom: none; padding: 0.08in 0 0.1in;">
             <div style="margin: 0 0.05in; background: var(--bg); border-radius: 5px; padding: 0.1in 0.12in; display: flex; gap: 0.1in; align-items: center; border: 1px solid rgba(127,55,8,0.06);">
               <img src="images/speakers/david_deming_new.jpg" alt="David Deming" style="width: 0.45in; height: 0.45in; border-radius: 50%; object-fit: cover; object-position: center 15%; flex-shrink: 0;">
@@ -909,7 +1252,6 @@
             <span class="time-col">3:10 PM</span>
             <span class="event-col"><strong>Closing Keynote</strong></span>
           </li>
-          <!-- Speaker card: Dreama Gentry (Option B locked in) -->
           <li style="border-bottom: none; padding: 0.08in 0 0.1in;">
             <div style="margin: 0 0.05in; background: var(--bg); border-radius: 5px; padding: 0.1in 0.12in; display: flex; gap: 0.1in; align-items: center; border: 1px solid rgba(127,55,8,0.06);">
               <img src="images/speakers/dreama_gentry.jpg" alt="Dreama Gentry" style="width: 0.45in; height: 0.45in; border-radius: 50%; object-fit: cover; object-position: center 15%; flex-shrink: 0;">
@@ -929,9 +1271,6 @@
             <span class="event-col"><strong>Open Networking</strong></span>
           </li>
         </ul>
-
-        <!-- Speaker bios now inline in schedule cards above -->
-
       </div>
     </div>
 
@@ -940,7 +1279,23 @@
      Left=Education │ Center=Medicine │ Right=Development
 ════════════════════════════════════════════ -->
     <p class="print-label">Side B — Inside (print second, flip on long edge)</p>
-    <div class="brochure-side side-b">
+
+    <!-- Hidden design option triggers — picker sets data-panel-style on .side-b -->
+    <div class="design-options panel-style-triggers" data-option-group="panels" data-label="Panel Design"
+         data-apply-attr="data-panel-style" data-apply-target=".side-b">
+      <div class="design-option active" data-option="A" data-desc="Clean Accent — white panels, left border, round photos"></div>
+      <div class="design-option" data-option="B" data-desc="Banner Headers — full-width color header bars"></div>
+      <div class="design-option" data-option="C" data-desc="Dark Elegance — charcoal panels, gold accents"></div>
+      <div class="design-option" data-option="D" data-desc="Serif Editorial — classical typography, thin rules"></div>
+      <div class="design-option" data-option="E" data-desc="Numbered Index — large watermark numbers, modern"></div>
+      <div class="design-option" data-option="F" data-desc="Elevated Cards — deep shadows, floating cards"></div>
+      <div class="design-option" data-option="G" data-desc="Two-Tone Split — colored header zone, cream body"></div>
+      <div class="design-option" data-option="H" data-desc="Outlined Geometric — borders only, no fills"></div>
+      <div class="design-option" data-option="I" data-desc="Left Stripe — bold accent sidebar per panel"></div>
+      <div class="design-option" data-option="J" data-desc="Compact Grid — tight spacing, efficient layout"></div>
+    </div>
+
+    <div class="brochure-side side-b" data-panel-style="A">
       <!-- Education Panel -->
       <div class="panel inner-panel">
         <div class="panel-header">
@@ -1120,7 +1475,7 @@
           picker.innerHTML = `
             ${groupTabs}
             <div class="picker-row">
-                <button class="picker-btn" data-dir="-1">←</button>
+                <button class="picker-btn" data-dir="-1">&#8592;</button>
                 <div class="picker-dots">
                     ${Array.from(options)
                       .map(
@@ -1129,7 +1484,7 @@
                       )
                       .join("")}
                 </div>
-                <button class="picker-btn" data-dir="1">→</button>
+                <button class="picker-btn" data-dir="1">&#8594;</button>
                 <div class="picker-desc">Option ${letter}: ${desc}</div>
             </div>
         `;
