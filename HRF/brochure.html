@@ -882,16 +882,28 @@
       .side-b[data-panel-style="J"] .speaker-card .info .bio { font-size: 5.5pt; }
 
       /* ── Print styles ── */
+      @page {
+        size: 11in 8.5in landscape;
+        margin: 0;
+      }
       @media print {
-        body {
+        html, body {
+          margin: 0;
+          padding: 0;
           background: none;
+          width: 11in;
+          height: 8.5in;
         }
         .brochure-side {
           margin: 0;
           box-shadow: none;
           page-break-after: always;
+          break-after: page;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
+        }
+        .brochure-side:last-of-type {
+          page-break-after: avoid;
         }
         .brochure-side::before,
         .brochure-side::after {
