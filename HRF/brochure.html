@@ -346,19 +346,29 @@
         font-style: italic;
         margin-bottom: 0.02in;
       }
-      .panel-header .cosponsor {
+      .panel-header .cosponsor,
+      .side-b > .cosponsor {
         display: flex;
         align-items: center;
         gap: 0.06in;
         margin-top: 0.06in;
       }
-      .panel-header .cosponsor img {
+      .panel-header .cosponsor img,
+      .side-b > .cosponsor img {
         height: 0.22in;
       }
-      .panel-header .cosponsor span {
+      .panel-header .cosponsor span,
+      .side-b > .cosponsor span {
         font-size: 5.5pt;
         color: #888;
         font-style: italic;
+      }
+      .side-b > .cosponsor {
+        grid-column: 1 / -1;
+        justify-content: center;
+        padding: 0.08in 0;
+        border-top: 1px solid rgba(127,55,8,0.1);
+        margin-top: 0;
       }
       .panel-desc {
         font-size: 6.5pt;
@@ -684,16 +694,48 @@
       .side-b[data-panel-style="E"] .speaker-card {
         border-radius: 0;
         box-shadow: none;
-        border-bottom: 2px solid rgba(127,55,8,0.06);
+        border-bottom: none;
         background: transparent;
+        flex-wrap: wrap;
+        padding: 0;
+        gap: 0;
+      }
+      .side-b[data-panel-style="E"] .speaker-card .speaker-top {
+        display: flex;
+        align-items: center;
+        gap: 0.08in;
+        width: 100%;
       }
       .side-b[data-panel-style="E"] .speaker-card img {
-        width: 0.6in;
+        width: 0.5in;
         min-height: 0;
-        height: 0.6in;
+        height: 0.5in;
         border-radius: 4px;
-        align-self: flex-start;
-        margin: 0.06in 0 0.06in 0.06in;
+        align-self: center;
+        flex-shrink: 0;
+      }
+      .side-b[data-panel-style="E"] .speaker-card .speaker-top .info {
+        padding: 0;
+      }
+      .side-b[data-panel-style="E"] .speaker-card .speaker-top .info .bio {
+        display: none;
+      }
+      /* Card style B: Warm inset card */
+      .side-b[data-card-style="B"] .speaker-card {
+        background: rgba(127, 55, 8, 0.04);
+        border-radius: 6px;
+        padding: 0.08in 0.1in;
+        box-shadow: inset 0 1px 3px rgba(127, 55, 8, 0.08);
+      }
+      .side-b[data-panel-style="E"] .speaker-card .bio-row {
+        width: 100%;
+        font-size: 6pt;
+        color: #666;
+        line-height: 1.5;
+        padding-top: 0.06in;
+      }
+      .side-b[data-panel-style="E"] .speaker-card {
+        margin-bottom: 0.15in;
       }
 
       /* ── F: Elevated Cards ── */
@@ -1336,27 +1378,12 @@
 ════════════════════════════════════════════ -->
     <p class="print-label">Side B — Inside (print second, flip on long edge)</p>
 
-    <!-- Hidden design option triggers — picker sets data-panel-style on .side-b -->
-    <div class="design-options panel-style-triggers" data-option-group="panels" data-label="Panel Design"
-         data-apply-attr="data-panel-style" data-apply-target=".side-b">
-      <div class="design-option active" data-option="A" data-desc="Clean Accent — white panels, left border, round photos"></div>
-      <div class="design-option" data-option="B" data-desc="Banner Headers — full-width color header bars"></div>
-      <div class="design-option" data-option="C" data-desc="Dark Elegance — charcoal panels, gold accents"></div>
-      <div class="design-option" data-option="D" data-desc="Serif Editorial — classical typography, thin rules"></div>
-      <div class="design-option" data-option="E" data-desc="Numbered Index — large watermark numbers, modern"></div>
-      <div class="design-option" data-option="F" data-desc="Elevated Cards — deep shadows, floating cards"></div>
-      <div class="design-option" data-option="G" data-desc="Two-Tone Split — colored header zone, cream body"></div>
-      <div class="design-option" data-option="H" data-desc="Outlined Geometric — borders only, no fills"></div>
-      <div class="design-option" data-option="I" data-desc="Left Stripe — bold accent sidebar per panel"></div>
-      <div class="design-option" data-option="J" data-desc="Compact Grid — tight spacing, efficient layout"></div>
-    </div>
-
-    <div class="brochure-side side-b" data-panel-style="A">
+    <div class="brochure-side side-b" data-panel-style="E" data-card-style="B">
       <!-- Education Panel -->
       <div class="panel inner-panel">
         <div class="panel-header">
           <div class="time">11:10 AM – 12:00 PM</div>
-          <h2>Education &amp; College Admissions</h2>
+          <h2>Education &amp; Admissions</h2>
         </div>
         <p class="panel-desc">
           K-12 opportunity in rural areas, college access and enrollment,
@@ -1365,27 +1392,31 @@
         </p>
 
         <div class="speaker-card">
-          <img src="images/speakers/aimee_guidera.gif" alt="Aimee Guidera" />
-          <div class="info">
-            <h4>Aimee Guidera</h4>
-            <div class="title">Former Virginia Secretary of Education</div>
-            <div class="bio">
-              Founder &amp; former CEO, Data Quality Campaign. Named one of
-              TIME's 12 Education Activists of 2012. Harvard Kennedy School
-              M.P.P. Princeton alumna. Pahara-Aspen Education Fellow.
+          <div class="speaker-top">
+            <img src="images/speakers/aimee_guidera.gif" alt="Aimee Guidera" />
+            <div class="info">
+              <h4>Aimee Guidera</h4>
+              <div class="title">Former Virginia Secretary of Education</div>
             </div>
+          </div>
+          <div class="bio-row">
+            Aimee Guidera is the founder and former CEO of the Data Quality Campaign and was named one of
+            TIME's 12 Education Activists of 2012. She holds a M.P.P. from the Harvard Kennedy School
+            and is a Princeton alumna and Pahara-Aspen Education Fellow.
           </div>
         </div>
         <div class="speaker-card">
-          <img src="images/speakers/chris_avery_new.jpg" alt="Chris Avery" />
-          <div class="info">
-            <h4>Chris Avery</h4>
-            <div class="title">Roy E. Larsen Professor of Public Policy</div>
-            <div class="bio">
-              PI, National Center for Rural Education Research Networks.
-              Co-author of <em>The Early Admissions Game</em>. NBER Research
-              Associate in Economics of Education.
+          <div class="speaker-top">
+            <img src="images/speakers/chris_avery_new.jpg" alt="Chris Avery" />
+            <div class="info">
+              <h4>Chris Avery</h4>
+              <div class="title">Roy E. Larsen Professor of Public Policy</div>
             </div>
+          </div>
+          <div class="bio-row">
+            Chris Avery is the PI of the National Center for Rural Education Research Networks and
+            co-author of <em>The Early Admissions Game</em>. He serves as an NBER Research
+            Associate in Economics of Education.
           </div>
         </div>
       </div>
@@ -1403,37 +1434,41 @@
         </p>
 
         <div class="speaker-card">
-          <img
-            src="images/speakers/matthew_tobey.jpg"
-            alt="Matthew Tobey"
-            style="
-              object-position: center 25%;
-              filter: grayscale(1) contrast(1.3) brightness(0.9);
-            "
-          />
-          <div class="info">
-            <h4>Matthew Tobey, MD</h4>
-            <div class="title">
-              Director, Rural Medicine Program, Massachusetts General Hospital
+          <div class="speaker-top">
+            <img
+              src="images/speakers/matthew_tobey.jpg"
+              alt="Matthew Tobey"
+              style="
+                object-position: center 25%;
+                filter: grayscale(1) contrast(1.3) brightness(0.9);
+              "
+            />
+            <div class="info">
+              <h4>Matthew Tobey, MD</h4>
+              <div class="title">
+                Director, Rural Medicine Program, Massachusetts General Hospital
+              </div>
             </div>
-            <div class="bio">
-              Assistant Professor, Harvard Medical School. Directs the MGH
-              Fellowship in Rural Health Leadership.
-            </div>
+          </div>
+          <div class="bio-row">
+            Dr. Matthew Tobey is an Assistant Professor at Harvard Medical School and directs the MGH
+            Fellowship in Rural Health Leadership.
           </div>
         </div>
         <div class="speaker-card">
-          <img src="images/speakers/rishi_wadhera.png" alt="Rishi Wadhera" />
-          <div class="info">
-            <h4>Rishi Wadhera, MD</h4>
-            <div class="title">
-              Assoc. Professor of Medicine, Harvard Medical School
+          <div class="speaker-top">
+            <img src="images/speakers/rishi_wadhera.png" alt="Rishi Wadhera" />
+            <div class="info">
+              <h4>Rishi Wadhera, MD</h4>
+              <div class="title">
+                Assoc. Professor of Medicine, Harvard Medical School
+              </div>
             </div>
-            <div class="bio">
-              Cardiologist, Beth Israel Deaconess. 250+ publications in NEJM,
-              JAMA, and the Lancet. PI on three NIH grants on rural
-              cardiovascular disparities.
-            </div>
+          </div>
+          <div class="bio-row">
+            Dr. Rishi Wadhera is a cardiologist at Beth Israel Deaconess with 250+ publications in NEJM,
+            JAMA, and the Lancet. He serves as PI on three NIH grants focused on rural
+            cardiovascular disparities.
           </div>
         </div>
       </div>
@@ -1443,16 +1478,6 @@
         <div class="panel-header">
           <div class="time">2:10 – 3:00 PM</div>
           <h2>Rural Economic Development</h2>
-          <div class="cosponsor">
-            <img
-              src="images/logos/reimagining_economy.svg"
-              alt="Reimagining the Economy Project"
-            />
-            <span
-              >With support from the Reimagining the Economy Project, Harvard
-              Kennedy School</span
-            >
-          </div>
         </div>
         <p class="panel-desc">
           Rural economic revitalization, just transition in coal communities,
@@ -1461,178 +1486,39 @@
         </p>
 
         <div class="speaker-card">
-          <img src="images/speakers/nathan_ohle.jpg" alt="Nathan Ohle" />
-          <div class="info">
-            <h4>Nathan Ohle</h4>
-            <div class="title">
-              President &amp; CEO, International Economic Development Council
+          <div class="speaker-top">
+            <img src="images/speakers/nathan_ohle.jpg" alt="Nathan Ohle" />
+            <div class="info">
+              <h4>Nathan Ohle</h4>
+              <div class="title">
+                President &amp; CEO, International Economic Development Council
+              </div>
             </div>
-            <div class="bio">
-              Leads the world's largest economic development association (5,000+
-              members). Former CEO, Rural Community Assistance Partnership.
-            </div>
+          </div>
+          <div class="bio-row">
+            Nathan Ohle leads the world's largest economic development association with over 5,000
+            members. He previously served as CEO of the Rural Community Assistance Partnership.
           </div>
         </div>
         <div class="speaker-card">
-          <img src="images/speakers/jacob_hannah_new.jpg" alt="Jacob Hannah" />
-          <div class="info">
-            <h4>Jacob Hannah</h4>
-            <div class="title">CEO, Coalfield Development</div>
-            <div class="bio">
-              5th-generation West Virginian. Leads the Appalachian Climate
-              Technologies Coalition ($62.8M EDA grant). Consulted on Just
-              Transition at the White House &amp; World Bank.
+          <div class="speaker-top">
+            <img src="images/speakers/jacob_hannah_new.jpg" alt="Jacob Hannah" />
+            <div class="info">
+              <h4>Jacob Hannah</h4>
+              <div class="title">CEO, Coalfield Development</div>
             </div>
+          </div>
+          <div class="bio-row">
+            Jacob Hannah is a 5th-generation West Virginian who leads the Appalachian Climate
+            Technologies Coalition ($62.8M EDA grant). He has consulted on Just
+            Transition at the White House and World Bank.
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- ═══ Design Options Picker (multi-group) ═══ -->
-    <script>
-      (function () {
-        const allGroups = document.querySelectorAll(".design-options");
-        if (!allGroups.length) return;
 
-        // Track state per group
-        const state = Array.from(allGroups).map(() => ({ optionIdx: 0 }));
-        let activeGroupIdx = 0;
 
-        // Build picker
-        const picker = document.createElement("div");
-        picker.className = "options-picker";
-        document.body.appendChild(picker);
-
-        function render() {
-          const group = allGroups[activeGroupIdx];
-          const options = group.querySelectorAll(".design-option");
-          const idx = state[activeGroupIdx].optionIdx;
-          const label = group.dataset.label || "Design Option";
-          const opt = options[idx];
-          const desc = opt.dataset.desc || "";
-          const letter = opt.dataset.option || "";
-          const multiGroup = allGroups.length > 1;
-
-          // Show group tabs if multiple groups
-          const groupTabs =
-            multiGroup ?
-              `
-            <div class="picker-groups">
-                ${Array.from(allGroups)
-                  .map(
-                    (g, gi) =>
-                      `<button class="picker-group-tab ${gi === activeGroupIdx ? "active" : ""}" data-group="${gi}">${g.dataset.label || "Group " + (gi + 1)}</button>`,
-                  )
-                  .join("")}
-            </div>
-        `
-            : "";
-
-          picker.innerHTML = `
-            ${groupTabs}
-            <div class="picker-row">
-                <button class="picker-btn" data-dir="-1">&#8592;</button>
-                <div class="picker-dots">
-                    ${Array.from(options)
-                      .map(
-                        (o, i) =>
-                          `<div class="picker-dot ${i === idx ? "active" : ""}" data-idx="${i}" title="Option ${o.dataset.option}: ${o.dataset.desc}"></div>`,
-                      )
-                      .join("")}
-                </div>
-                <button class="picker-btn" data-dir="1">&#8594;</button>
-                <div class="picker-desc">Option ${letter}: ${desc}</div>
-            </div>
-        `;
-
-          // Update all groups' visibility + attribute-based styling
-          allGroups.forEach((g, gi) => {
-            const opts = g.querySelectorAll(".design-option");
-            opts.forEach((o, oi) =>
-              o.classList.toggle("active", oi === state[gi].optionIdx),
-            );
-
-            // If this group uses data-apply-attr, set the attribute on the target
-            const applyAttr = g.dataset.applyAttr;
-            const applyTarget = g.dataset.applyTarget;
-            if (applyAttr && applyTarget) {
-              const target = document.querySelector(applyTarget);
-              if (target) {
-                const activeOpt = opts[state[gi].optionIdx];
-                target.setAttribute(
-                  applyAttr,
-                  activeOpt ? activeOpt.dataset.option : "A",
-                );
-              }
-            }
-
-          });
-        }
-
-        picker.addEventListener("click", (e) => {
-          const btn = e.target.closest(".picker-btn");
-          const dot = e.target.closest(".picker-dot");
-          const tab = e.target.closest(".picker-group-tab");
-
-          if (tab) {
-            activeGroupIdx = parseInt(tab.dataset.group);
-            render();
-            // Scroll to that group
-            const rect = allGroups[activeGroupIdx].getBoundingClientRect();
-            window.scrollTo({
-              top: window.scrollY + rect.top - 80,
-              behavior: "smooth",
-            });
-          } else if (btn) {
-            const options =
-              allGroups[activeGroupIdx].querySelectorAll(".design-option");
-            const dir = parseInt(btn.dataset.dir);
-            state[activeGroupIdx].optionIdx =
-              (state[activeGroupIdx].optionIdx + dir + options.length) %
-              options.length;
-            render();
-          } else if (dot) {
-            state[activeGroupIdx].optionIdx = parseInt(dot.dataset.idx);
-            render();
-          }
-        });
-
-        // Keyboard: ← → for options, Tab/Shift+Tab for groups
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowLeft") {
-            const options =
-              allGroups[activeGroupIdx].querySelectorAll(".design-option");
-            state[activeGroupIdx].optionIdx =
-              (state[activeGroupIdx].optionIdx - 1 + options.length) %
-              options.length;
-            render();
-            e.preventDefault();
-          } else if (e.key === "ArrowRight") {
-            const options =
-              allGroups[activeGroupIdx].querySelectorAll(".design-option");
-            state[activeGroupIdx].optionIdx =
-              (state[activeGroupIdx].optionIdx + 1) % options.length;
-            render();
-            e.preventDefault();
-          } else if (e.key === "Tab" && allGroups.length > 1) {
-            e.preventDefault();
-            if (e.shiftKey) {
-              activeGroupIdx =
-                (activeGroupIdx - 1 + allGroups.length) % allGroups.length;
-            } else {
-              activeGroupIdx = (activeGroupIdx + 1) % allGroups.length;
-            }
-            render();
-            const rect = allGroups[activeGroupIdx].getBoundingClientRect();
-            window.scrollTo({
-              top: window.scrollY + rect.top - 80,
-              behavior: "smooth",
-            });
-          }
-        });
-
-        render();
-      })();
-    </script>
   </body>
 </html>
