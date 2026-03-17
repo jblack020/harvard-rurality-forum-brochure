@@ -162,13 +162,23 @@
 
       /* ── FRONT COVER (center, outside) ── */
       .front-cover {
-        background: var(--primary);
+        background: url('https://img.atlasobscura.com/I6OAmnPKpZSs4v81B0fcCtzkgEEyyP_2DxVLqaIRDAA/rt:fit/w:1200/q:80/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS9h/cHBfdXBsb2Fkcy9w/bGFjZV9pbWFnZXMv/dXNlcl8zMjkyMjY3/X2UwNDk2MjlkLWVk/YWMtNDAxOC05MWZj/LTRiOGYzYjJiN2Vi/NA.jpg') center/cover no-repeat;
         color: var(--white);
         justify-content: center;
         align-items: center;
         text-align: center;
         position: relative;
         padding: 0.5in 0.35in;
+      }
+      .front-cover .cover-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(127, 55, 8, 0.85);
+        z-index: 0;
+      }
+      .front-cover > * {
+        position: relative;
+        z-index: 1;
       }
       .front-cover::before {
         content: "";
@@ -823,6 +833,7 @@
 
       <!-- FRONT COVER -->
       <div class="panel front-cover">
+        <div class="cover-overlay"></div>
         <div class="logo-wrap">
           <img src="../images/hurl_white.png" alt="HURL Logo" />
         </div>
